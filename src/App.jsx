@@ -1,35 +1,41 @@
-import { useEffect, useState } from "react"
-import TransactionList from "./components/TransactionList"
-import AddTransaction from "./components/AddTransaction"
-import SearchForm from "./components/SearchForm"
+import React, { useEffect, useState } from "react";
+import AccountContainer from "./components/AccountContainer";
+
 
 function App() {
-  const [transactions,setTransactions] = useState([])
+  const [transactions, setTransactions] = useState([]);
+
   useEffect(() => {
-    
-    fetch('http://localhost:3000/transactions')
-    .then((res) => res.json())
-    .then(data => setTransactions(data))
-    
-  },[])
-  console.log(transactions)
+    fetch('http://localhost:8001/transactions')
+      .then((res) => res.json())
+      .then((data) => setTransactions(data))
+      .catch((error) => console.error('Fetch error:', error));
+  }, []);
 
-  const handleNewTransaction = (newTransaction) => {
-    console.log(newTransaction)
+  const addTransaction = (newTransaction) => {
+    fetch('http://localhost:8001/transactions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTransaction),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setTransactions((prevTransactions) => [...prevTransactions, data]);
+      })
+      .catch((error) => console.error('Error adding transaction:', error));
+  };
 
-    setTransactions(transactions => [...transactions,newTransaction])
-
-  }
   return (
-    <div>
-      <div>
-      <h1 className="head">The Royal Bank of Flatiron</h1> 
+    <div className="ui raised segment">
+        
+      <div className="bg-blue-600 mx-4 rounded-md mt-3 mb-2 p-2 ">
+        <h2 className="text-white text-xl ">The Royal Bank of Flatiron</h2>
       </div>
-      <SearchForm/>
-      <AddTransaction submission={handleNewTransaction}/>
-      <TransactionList transactions={transactions}/>
+      <AccountContainer transactions={transactions} addTransaction={addTransaction} />
     </div>
-  )
+  );
 }
 
-export default App;
+export default App

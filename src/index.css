@@ -1,54 +1,32 @@
-
 * {
-  background-color: rgb(38, 183, 219);
-  font-style: italic;
   box-sizing: border-box;
   text-align: center;
-  
 }
 
-.head {
+input {
+  width: 25% !important;
+  margin-right: 0.25em!important;
+  margin-left: 0.25em!important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #222;
+  padding: 20px;
   color: white;
-  background-color: rgb(21, 64, 184);
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  border-radius: 50px;
-  margin-top: 50px;
-  margin-left: 200px;
-  margin-right: 200px;
-
-}
-.table {
-  width: 100%;
-  border: dotted 1px;
-  border-radius: 10px;
-  border-collapse: collapse;
-  margin: 5px;
-}
-tr,td,th,table {
-  border: dotted 1px;
 }
 
-#search {
-  border: solid 1px;
-  width: 50%;
-  outline: 6px;
-  display: inline;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 20px;
-  font-size: large;
-  
 
-}
-
-#form {
-  margin-bottom: 20px;
-  border: solid 1px;
-}
-#input {
-  font-size: large;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

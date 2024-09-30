@@ -1,26 +1,20 @@
-import React, { useState } from 'react'
 
-function SearchForm() {
-  const [search, setSearch] = useState('')
-
-  const onSearch = (e) => {
-    setSearch(e.target.value)
-   
-  }
+function Search({ onSearch }) { 
+  const handleChange = (e) => {
+    onSearch(e.target.value); 
+  };
 
   return (
-    <form id='search'>
-        <input id='search'
-        onChange={onSearch} 
-        value={search}
-        type='text' 
-        placeholder='search recent transaction...'
-        />
-        <button type='submit'>search</button>
-
-
-    </form>
-  )
+    <div className="border mx-4 p-2 ">
+      <input
+      className=" outline-none "
+        type="text"
+        placeholder="Search your Recent Transactions..."
+        onChange={handleChange} 
+      />
+    
+    </div>
+  );
 }
 
-export default SearchForm;
+export default Search;

@@ -1,29 +1,28 @@
-import React from 'react'
-import Transactions from './Transactions'
-function TransactionList({transactions}) {
+function TransactionsList({ transactions }) {
   return (
-    <table className='table'>
+    <div className="mt-1 mx-4">
+      <table className="min-w-full border border-gray-300 shadow-md">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="py-2 px-4 border-b">Date</th>
+            <th className="py-2 px-4 border-b">Description</th>
+            <th className="py-2 px-4 border-b">Category</th>
+            <th className="py-2 px-4 border-b">Amount</th>
+          </tr>
+        </thead>
         <tbody>
-        <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Amount</th>
-        </tr>
-        {transactions.map((transaction) => (
-            <Transactions
-            key={transaction.id}
-            date={transaction.date}
-            description={transaction.description}
-            category={transaction.category}
-            amount={transaction.amount}
-            
-            />
-
-        ))}
+          {transactions.map((transaction) => (
+            <tr key={transaction.id} className="hover:bg-gray-50">
+              <td className="py-2 px-4 border-b">{transaction.date}</td>
+              <td className="py-2 px-4 border-b">{transaction.description}</td>
+              <td className="py-2 px-4 border-b">{transaction.category}</td>
+              <td className="py-2 px-4 border-b">{transaction.amount}</td>
+            </tr>
+          ))}
         </tbody>
-    </table>
-  )
+      </table>
+    </div>
+  );
 }
 
-export default TransactionList
+export default TransactionsList;
